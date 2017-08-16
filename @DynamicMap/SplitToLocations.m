@@ -4,7 +4,7 @@ if isempty(obj.LocationID)
     for k=1:length(idx)
         if length(idx{k})>2 
             obj.Batches(k)=obj.Batches(k).AddData(obj.ThetaRho(idx{k},:));
-            obj.Batches(k)=obj.Batches(k).SetParametersMeanShift(MeanShiftKernel.Gaussian2D,DistanceType.Wrapped,0.001,-1); % just an experiemntal values
+            obj.Batches(k)=obj.Batches(k).SetParametersMeanShift(0.001,-1);
         end
     end
 else

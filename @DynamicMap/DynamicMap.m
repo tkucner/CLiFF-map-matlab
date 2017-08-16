@@ -20,8 +20,7 @@ classdef DynamicMap
         Radious % radious used to establish if object is within a cluster
         
         Wind % winding number
-       
-       
+        
         TrustHistogramT % "histogram" showing how much we trust our reconstructed map
         TrustHistogramP % "histogram" showing how much we trust in motion model
         TrustHistogramScaleP % "histogram" showing how much we trust in motion model
@@ -30,24 +29,19 @@ classdef DynamicMap
         TrustHistogramSparse % histogram showing how many observations are supporting our model
         % Prototype % Prototype of parameters for batch
         
-        
-        
         %-Directional Clustering-------------------------------------------
         ClusterIDs % IDs of the clusters within the map
         ClusterMeans % mean orientation
         ClusterMembers % Batches belonging to a given cluster
         %------------------------------------------------------------------
-        
-       
     end
-    
     methods(Static = false)
-        
         function obj = DynamicMap()
         end
+        
         function obj = SetParameters(obj,radious,xmin,xmax,ymin,ymax,step,wind)
             obj.Radious=radious;
-         
+            
             obj.GridParameters=[xmin,xmax,ymin,ymax,step];
             obj.Wind=wind;
             [X_eg,Y_eg] = meshgrid(xmin:step:xmax,ymin:step:ymax);
@@ -59,27 +53,16 @@ classdef DynamicMap
             % obj.Prototype=Batch(0,[0,0],[],wind);
             for j=1:length(obj.Grid)
                 obj.Batches(j)=Batch();
-               obj.Batches(j)=obj.Batches(j).SetParameters(j, obj.Grid(j,:),[],wind,false);
-              
+                obj.Batches(j)=obj.Batches(j).SetParameters(j, obj.Grid(j,:),[],wind,false);        
             end
         end
         
-        
-
-        obj = SplitToLocations(obj)      
+        obj = SplitToLocations(obj)
         obj = ProcessBatches(obj)
-        obj = ProcessBatchesSparse(obj) 
- 
+        obj = ProcessBatchesSparse(obj)
+        [] = SaveXML(obj,FileName)
         [] = PlotUVDirection(obj,scale)
-     
         [] = PlotMapSparseDirection(obj,filterTreshold,scale)
-               
+        [] = PlotMapDirection(obj,filterTreshold,scale)
     end
-    
-     methods (Static = true)
-        KD = InvertDistanceKernel(D,tr,Dmax)
-     end
-    
-    
 end
-
