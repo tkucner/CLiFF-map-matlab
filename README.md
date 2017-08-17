@@ -9,18 +9,16 @@ The repositroy can be dived into two parts.
 ### @Batch & @DynamicMap
 In these two folders you will find classess and functions providing the functionalities of CLiFF-map.
 * *@Batch* contains code necessarry to build a model of flow for one single location.
-![alt text](https://github.com/tkucner/CLiFF-map-matlab/blob/master/img/wind_in.png "Visualisation of input data")
-![alt text](https://github.com/tkucner/CLiFF-map-matlab/blob/master/img/wind_out.png "Visualisation of output map")
 * *@DynamicMap* provides functionalities necessarry to build a complete map.
-![alt text](https://github.com/tkucner/CLiFF-map-matlab/blob/master/img/pedestrian_in.png "Visualisation of input data")
-![alt text](https://github.com/tkucner/CLiFF-map-matlab/blob/master/img/pedestrian_out.png "Visualisation of output map")
-
-
 
 ### Air flow & Pedestrian flow examples
 The repository is accompanied by two examples showing how to use CLiFF-map
 * *air_flow.m* - This example shows how to build a sparse map out of a set of observations collected in a set of locations. In order to show the capabilities of the method I have used a wind measurements obtained by Yuta Wada, Marco Trincavelli, Yuichiro Fukazawa and Hiroshi Ishida[2].
+![alt text](https://github.com/tkucner/CLiFF-map-matlab/blob/master/img/wind_in.png "Visualisation of input data")
+![alt text](https://github.com/tkucner/CLiFF-map-matlab/blob/master/img/wind_out.png "Visualisation of output map")
 * *people_flow.m* - This example shows ho to build CLiFF-map if the observations are randomy distibuted all over the map and it is necessarry to discretise them so they will fit a refualr grid. This example uses data set generated with ped-sim (https://github.com/srl-freiburg/pedsim_ros).
+![alt text](https://github.com/tkucner/CLiFF-map-matlab/blob/master/img/pedestrian_in.png "Visualisation of input data")
+![alt text](https://github.com/tkucner/CLiFF-map-matlab/blob/master/img/pedestrian_out.png "Visualisation of output map")
 
 ## When there will be more code published?
 Soon! 
