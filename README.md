@@ -2,10 +2,18 @@
 The MATLAB implementation of CLiFF-map a dynamic mapping algorithm
 
 ## What is CLiFF-map?
-CLiFF-map stands for Circular-Linear Flow Field map. It is a representation allowing to model a local flow. If you are interested in details please read my RA-L paper[1].
+CLiFF-map stands for Circular-Linear Flow Field map. The idea behind this representation is that you can provide a set of velocity measurements (from human tracker or anemometer) and then build a map representing the motion patterns all over the environment. If you are interested in details please read my RA-L paper[1].
 
 ## What can I find in this repository?
-In this repository you can find a simple example showing how to model a flow of air in observed locations. Just run the air_flow.m script. In order to show the capabilities of the method I have used a wind measurements obtained by Yuta Wada, Marco Trincavelli, Yuichiro Fukazawa and Hiroshi Ishida[2].
+The repositroy can be dived into two parts.
+### @Batch & @DynamicMap
+In these two folders you will find classess and functions providing the functionalities of CLiFF-map.
+* *@Batch* contains code necessarry to build a model of flow for one single location.
+* *@DynamicMap* provides functionalities necessarry to build a complete map.
+### Air flow & Pedestrian flow examples
+The repository is accompanied by two examples showing how to use CLiFF-map
+* *air_flow.m* - This example shows how to build a sparse map out of a set of observations collected in a set of locations. In order to show the capabilities of the method I have used a wind measurements obtained by Yuta Wada, Marco Trincavelli, Yuichiro Fukazawa and Hiroshi Ishida[2].
+* *people_flow.m* - This example shows ho to build CLiFF-map if the observations are randomy distibuted all over the map and it is necessarry to discretise them so they will fit a refualr grid. This example uses data set generated with ped-sim (https://github.com/srl-freiburg/pedsim_ros).
 
 ## When there will be more code published?
 Soon! 
