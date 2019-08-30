@@ -1,7 +1,8 @@
 function obj=ProcessBatches(obj)
 localBatches=obj.Batches;
-fprintf('Progress:\n');
-fprintf(['\n' repmat('.',1,numel(localBatches)) '\n\n']);
+
+obj1 = ProgressBar(total_observations, 'Title', 'Processing Batches ...', 'Total', numel(localBatches));
+
 for i=1:numel(localBatches)
     if ~isempty(localBatches(i).Data)
         localBatches(i)=localBatches(i).MeanShift2Dv();
@@ -9,7 +10,7 @@ for i=1:numel(localBatches)
             localBatches(i)=localBatches(i).EMv();
         end
     end
-    fprintf('\b|\n');
+    obj1.step([], [], []);
 end
 obj.Batches=localBatches;
 end

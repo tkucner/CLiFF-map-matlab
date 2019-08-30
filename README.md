@@ -29,6 +29,13 @@ Currently I am organising my research code and preparing it for release. I will 
 Please feel free to send me an e-mail!
 tomasz.kucner@oru.se
 
+or Chittaranjan:
+ksatyaki@gmail.com
+
+## MATLAB dependency for nice-looking ProgressBar
+MatlabProgressBar: https://github.com/JAAdrian/MatlabProgressBar
+or here: https://de.mathworks.com/matlabcentral/fileexchange/57895-matlabprogressbar
+
 ## References
 [1] T. P. Kucner, M. Magnusson, E. Schaffernicht, V. H. Bennetts and A. J. Lilienthal, "Enabling Flow Awareness for Mobile Robots in Partially Observable Environments," in IEEE Robotics and Automation Letters, vol. 2, no. 2, pp. 1093-1100, April 2017.
 URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7835155&isnumber=7797562
