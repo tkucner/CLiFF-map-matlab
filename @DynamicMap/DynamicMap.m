@@ -18,6 +18,7 @@ classdef DynamicMap
         Grid % position of actual nodes
         File % file with data to load
         Radious % radious used to establish if object is within a cluster
+        Image % backgraound image for the plot
         
         Wind % winding number
         
@@ -55,6 +56,10 @@ classdef DynamicMap
                 obj.Batches(j)=Batch();
                 obj.Batches(j)=obj.Batches(j).SetParameters(j, obj.Grid(j,:),[],wind,false);        
             end
+        end
+        
+        function obj = SetImage(obj,image)
+            obj.Image = imread(image);
         end
         
         obj = SplitToLocations(obj)
