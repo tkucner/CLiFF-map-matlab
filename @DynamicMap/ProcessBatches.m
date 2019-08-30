@@ -1,7 +1,7 @@
 function obj=ProcessBatches(obj)
 localBatches=obj.Batches;
 
-obj1 = ProgressBar(total_observations, 'Title', 'Processing Batches ...', 'Total', numel(localBatches));
+obj1 = ProgressBar(numel(localBatches), 'Title', 'Processing Batches ...');
 
 for i=1:numel(localBatches)
     if ~isempty(localBatches(i).Data)
