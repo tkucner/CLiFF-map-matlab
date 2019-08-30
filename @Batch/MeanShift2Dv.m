@@ -11,7 +11,7 @@ for localDataIte=1:dataCount
         weight=zeros(dataCount,length(-obj.Wind:obj.Wind));
   
         for k=-obj.Wind:obj.Wind
-           weight(:,1+obj.Wind+k)=mvnpdf(dista,[0 0]+[2*pi*k 0],obj.Bandwidth);
+           weight(:,1+obj.Wind+k)=mvnpdf(dista,[0 0]+[2*pi*k 0],[obj.Bandwidth(1), obj.Bandwidth(4)]);
         end
         weight=sum(weight,2);
         shiftAngular=Batch.WeightedMeanCS(obj.Data,weight);
