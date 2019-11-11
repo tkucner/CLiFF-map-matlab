@@ -13,7 +13,12 @@ hold on;
 
 % %---------------------
 % plot the nodes of the map
-plot(obj.Grid(:,1),obj.Grid(:,2),'+','MarkerSize',3);
+% plot(obj.Grid(:,1),obj.Grid(:,2),'+','MarkerSize',3);
+if ~isempty(obj.Image)
+    obj.Image = flipud(obj.Image);
+    obj.Image = (double(obj.Image)/255.0 > 0.65) - 1;
+    imagesc([obj.GridParameters(1) obj.GridParameters(2)], [obj.GridParameters(3) obj.GridParameters(4)], obj.Image);
+end
 
 col=hsv(360);
 for i=1:numel(obj.Batches)
@@ -36,11 +41,18 @@ for i=1:numel(obj.Batches)
    end
 end
 
-
+%---------------------
+% stuff for nice background image
+if ~isempty(obj.Image)
+    set(gca,'YDir','normal');
+end
 %---------------------
 axis([obj.GridParameters(1) obj.GridParameters(2), obj.GridParameters(3) obj.GridParameters(4)])
-colormap(col)
+%colormap(col)
 c=colorbar('Ticks',[0:0.25:1],'TickLabels',[0 90 180 270 360]);
 c.Label.String = 'Orientation [deg]';
+axis image
+l = legend("arrows");
+set(l, 'visible', 'off')
 end
 

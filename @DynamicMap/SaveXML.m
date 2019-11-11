@@ -46,6 +46,14 @@ for i=1:numel(obj.Batches)
     id.appendChild(docNode.createTextNode(num2str(obj.Batches(i).ID)));
     location.appendChild(id);
     
+    p = docNode.createElement('p');
+    p.appendChild(docNode.createTextNode(num2str(obj.Batches(i).p)));
+    location.appendChild(p);
+    
+    q = docNode.createElement('q');
+    q.appendChild(docNode.createTextNode(num2str(obj.Batches(i).q)));
+    location.appendChild(q);
+    
     pose = docNode.createElement('pose');
     
     x_pose = docNode.createElement('x');
@@ -116,6 +124,14 @@ for i=1:numel(obj.BatchesSparse)
     id = docNode.createElement('id');
     id.appendChild(docNode.createTextNode(num2str(obj.BatchesSparse(i).ID)));
     location.appendChild(id);
+    
+    p = docNode.createElement('p');
+    p.appendChild(docNode.createTextNode(num2str(obj.Batches(i).p)));
+    location.appendChild(p);
+    
+    q = docNode.createElement('q');
+    q.appendChild(docNode.createTextNode(num2str(obj.Batches(i).q)));
+    location.appendChild(q);
     
     pose = docNode.createElement('pose');
     

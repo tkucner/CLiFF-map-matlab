@@ -5,11 +5,12 @@ hold on;
 %---------------------
 % stuff for nice backgroimgund image
 if ~isempty(obj.Image)
+    obj.Image = flipud(obj.Image);
     imagesc([obj.GridParameters(1) obj.GridParameters(2)], [obj.GridParameters(3) obj.GridParameters(4)], obj.Image);
 end
 % %---------------------
 % plot the nodes of the map
-plot(obj.Grid(:,1),obj.Grid(:,2),'+g','MarkerSize',3);
+% plot(obj.Grid(:,1),obj.Grid(:,2),'+g','MarkerSize',3);
 AllMeans=vertcat(obj.Batches(:).Mean);
 MaxSpeed=max(AllMeans(:,2));
 NormalisationFactor=1/MaxSpeed;

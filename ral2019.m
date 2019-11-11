@@ -3,7 +3,7 @@ close all
 clc
 
 % File conatining input data.
-FILE='/home/ksatyaki/workspace/DATA/New/training_dataset_all.txt';
+FILE='/home/ksatyaki/workspace/DATA/New/training_dataset_point1.txt';
 %PATH='Data';
 full_path=FILE;
 % Load input data to matrix.
@@ -43,12 +43,26 @@ DM=DM.SplitToLocations();
 
 fprintf("Beginning to process batches.\n");
 
-% % Compute the parameters of the distribution
+% Compute the parameters of the distribution
 DM=DM.ProcessBatches();
+%%
+fprintf("Computing P and Q\n");
+max_q = 0.0;
+for i=1:numel(DM.Batches)
+  DM.Batches(i).p = 1.0;
+  DM.Batches(i).q = size(DM.Batches(i).Data,1) / size(DATA,1);
+  if(DM.Batches(i).q > max_q)
+    max_q = DM.Batches(i).q
+  end
+end
+
+for i = 1:numel(DM.Batches)
+  DM.Batches(i).q = DM.Batches(i).q / max_q;
+end
 %% Plot the color-coded input data
 %DM.PlotUVDirection(2)
 
 %Plot resulting distribution
-DM.PlotMapDirection(0.1,0.2)
+% DM.PlotMapDirection(0.1,0.2)
 
-DM.SaveXML('ral2019.xml')
+DM.SaveXML('ral2019_normalized_q.xml')
