@@ -3,7 +3,7 @@ close all
 clc
 
 % File conatining input data.
-FILE='/home/ksatyaki/workspace/DATA/ATC/part1_5s/20121024_ds_5s.csv';
+FILE='/home/ksatyaki/workspace/DATA/UTBM/training_atc_point1.txt';
 %PATH='Data';
 full_path=FILE;
 % Load input data to matrix.
@@ -25,25 +25,46 @@ DM.UV = [U,V];
 % In this example the measurments are disitributed through the
 % environmentnt, in order to build a map we need to define the boundries.
 % In the following 4 lines a bounding box for the data is defined.
-min_x=-60.0;
-max_x=80.0;
-min_y=-40.0;
-max_y=20.0;
+min_x=-10.0;
+max_x=3.0;
+min_y=0.0;
+max_y=14.0;
 
 
 DM.File=FILE;
 % Setting parameters for the map
-DM=DM.SetParameters(0.5,min_x,max_x,min_y,max_y,0.5,0);
+DM=DM.SetParameters(0.5,min_x,max_x,min_y,max_y,0.5,1);
 % Split data into batches
 DM=DM.SplitToLocations();
 % % Compute the parameters of the distribution
 DM=DM.ProcessBatches();
+
+% Compute PQ values
+localBatches = DM.Batches;
+
+for ib=1:numel(localBatches)
+    
+  [m,~]=size(localBatches(ib).Data);
+  q = m/max_observations;
+  p = 1.0;
+  
+  localBatches(ib).q=q;
+  localBatches(ib).p=p;
+  DM.SparseP(ib)=P;
+  DM.SparseQ(ib)=Q;
+  dm_2.SparseP(ib)=p;
+  
+  [I,J]=ind2sub(size(dm_2.TrustHistogramQ),ib);
+  dm_2.TrustHistogramQ(I,J)=q;
+end
+
+
 %% Plot the color-coded input data
 %DM.PlotUVDirection(2)
 
-DM = DM.SetImage('/home/ksatyaki/workspace/cpp_ws/src/ompl_planners/ompl_planners_ros/maps/atc_white.pgm');
+DM = DM.SetImage('/home/ksatyaki/workspace/cpp_ws/src/ompl_planners/ompl_planners_ros/maps/utbm.pgm');
 %Plot resulting distribution
 DM.PlotMapDirection(0.1,0.2)
 %% SAVE XML
  % DONT FORGET THIS STEP
-DM.SaveXML('atc_point5.xml')
+DM.SaveXML('utbm_point1.xml')
